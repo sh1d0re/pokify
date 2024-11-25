@@ -58,12 +58,12 @@ def checkCurrentHands(givenHands, givenRiver):
             break
     if any(count >= 5 for count in Counter([i[1] for i in givenHandsAndRiver]).values()):
         hands["Flush"] = str(i)[0]
+        if ("10, 11, 12, 13, 14" in str(givenHandsAndRiverInteger)):
+            hands["Royal Flush"] = True
     if not(hands["Pair"] == None) and not(hands["Three Card"] == None):
         hands["Full House"] = max([hands["Pair"], hands["Three Card"]])
     if not(hands["Straight"] == None) and not(hands["Flush"] == None):
         hands["Straight Flush"] = int(hands["Flush"])
-    if ("10, 11, 12, 13, 14" in str(givenHandsAndRiverInteger)) and not(hands["Flush"] == None):
-        hands["Royal Flush"] = True
     return(hands)
 
 selfResults = {"Pair": [], "Two Pair": [], "Three Card": [], "Straight": [], "Flush": [], "Full House": [], "Four Of A Kind": [], "Straight Flush": [], "Royal Flush": []}
